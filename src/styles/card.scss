@@ -1,0 +1,77 @@
+$radius: 10px;
+$text-secondary-color: #8D9398;
+
+.card{
+    background-color: white;
+    margin: 30px 0;
+    border-radius: $radius;
+    overflow: hidden;
+    .card-image{
+        min-height: 200px;
+        max-height: 200px;
+        overflow: hidden;
+    }
+    .card-body{
+        position: relative;
+        .card-diskon{
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            width: 60px;
+            height: 60px;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            padding: 2px;
+            background: #2F64F9;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            top: -30px;
+            right: 20px;
+        }
+        .card-category{
+            background-color: #F2F7FA;
+            display: inline-block;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 2px 5px;
+            border-radius: $radius;
+        }
+        .card-title{
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 10px;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+        }
+        .card-subtitle,
+        .card-author{
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 18px;
+            color: $text-secondary-color;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+        }
+        .card-author{
+            -webkit-line-clamp: 1;
+            margin-bottom: 20px;
+            text-transform: capitalize;
+        }
+        .card-cta{
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+            color: black;
+        }
+    }
+}
