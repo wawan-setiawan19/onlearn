@@ -75,7 +75,7 @@ const AddLulus = () => {
 
     axios({
       method: 'post',
-      url: `http://192.168.100.49:3030/lulus`,
+      url: `http://localhost:3030/lulus`,
       data: dataInput
     })
       .then((res) => {
