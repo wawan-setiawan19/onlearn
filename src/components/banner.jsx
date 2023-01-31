@@ -5,7 +5,7 @@ const Banner = () => {
     return (
         <div id="beranda" className="mt-5 pt-5">
             <Container>
-                <Row className='mt-lg-5'>
+                <Row className=''>
                     <Col lg={4} className='mt-lg-4'>
                         <div className="fw-bolder text-blue">#EasyLearnEasySuccess</div>
                         <div className="fs-1 fw-bold lh-base">Bimbel hybrid dengan harga terjangkau</div>

@@ -5,7 +5,7 @@ import { Button, Col, Image, Modal, Row, Table } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import DeleteCourse from "./delete";
 
-const DashboardCourse = () => {
+const DashboardLulus = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [show, setShow] = useState(false)
     const [idReceive, setIdReceive] = useState('')
@@ -18,7 +18,7 @@ const DashboardCourse = () => {
         setIdReceive(id)
     }
     const loadData = () => {
-        axios.get('http://localhost:3030/course')
+        axios.get('http://localhost:3030/lulus')
             .then((res) => {
                 setCourses(res.data)
                 setIsLoading(false)
@@ -31,10 +31,10 @@ const DashboardCourse = () => {
     return (
         <div className="container">
             <div className="mt-5 pt-3">
-                <h1>Courses</h1>
+                <h1>Daftar Nama Kelulusan</h1>
                 <Row>
                     <Col sm={12}>
-                        <Button as={Link} to="/courses/add">Add</Button>
+                        <Button as={Link} to="/kelulusan/add">Add</Button>
                     </Col>
                 </Row>
                 <Row className="mt-4">
@@ -83,4 +83,4 @@ const DashboardCourse = () => {
     )
 }
 
-export default DashboardCourse
+export default DashboardLulus

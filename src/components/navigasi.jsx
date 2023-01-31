@@ -8,9 +8,9 @@ const Navigasi = () => {
         <Navbar collapseOnSelect expand="lg" fixed='top' bg='white'>
             <Container>
                 <Navbar.Brand className='fs-3 fw-bold' as={Link} to="/">
-                    ONLEARN
+                    PSB SMPIQu 2023/2024
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id='responsive-navbar-nav'>
                     <Nav className='me-auto'>
                         <Nav.Link as={HashLink} to="./#beranda">Beranda</Nav.Link>
@@ -27,7 +27,7 @@ const Navigasi = () => {
                             <Button as={Link} to="/register">Daftar</Button>
                         </Nav.Item>
                     </Nav>
-                </Navbar.Collapse>
+                </Navbar.Collapse> */}
             </Container>
         </Navbar>
     )

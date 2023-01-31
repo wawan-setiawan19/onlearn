@@ -82,7 +82,7 @@ const EditCourse = () => {
 
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
           <Form.Label sm={2}>
-            Course Name
+            Material Topic
           </Form.Label>
           <Col sm={12}>
             <Form.Control type="text" placeholder="Course Name" value={inTitle} onChange={(e) => handleTitle(e.target.value)} />

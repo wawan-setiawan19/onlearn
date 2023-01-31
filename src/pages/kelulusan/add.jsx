@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 import ToastNotification from "../../components/toastNotification"
 
 
-const AddCourse = () => {
+const AddLulus = () => {
   const navigate = useNavigate()
   const [inCategory, setInCategory] = useState('SD')
   const [inTitle, setInTitle] = useState('')
@@ -73,12 +73,12 @@ const AddCourse = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:3030/course',
+      url: 'http://localhost:3030/lulus',
       data: dataInput
     })
       .then((res) => {
         setShow(true)
-        navigate('/courses')
+        navigate('/kelulusan')
       })
   }
   const handleSubmit = (event) => {
@@ -90,7 +90,7 @@ const AddCourse = () => {
   return (
     <div className="mt-5 pt-5 container">
       <h1>Add Data</h1>
-      <Button as={Link} to='/courses'>Back</Button>
+      <Button as={Link} to='/kelulusan'>Back</Button>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
           <Form.Label sm={2}>
@@ -180,4 +180,4 @@ const AddCourse = () => {
   )
 }
 
-export default AddCourse
+export default AddLulus

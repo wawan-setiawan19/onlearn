@@ -1,22 +1,32 @@
 import axios from "axios"
+import { useEffect } from "react"
 import { useState } from "react"
-import { Button, Col, Form, Image, Row, ToastContainer } from "react-bootstrap"
-import { useNavigate } from "react-router"
+import { Button, Col, Form, Image, Row, Toast, ToastContainer } from "react-bootstrap"
+import { useNavigate, useParams } from "react-router"
 import { Link } from "react-router-dom"
-import ToastNotification from "../../components/toastNotification"
 
 
-const AddCourse = () => {
+const EditLulus = () => {
   const navigate = useNavigate()
-  const [inCategory, setInCategory] = useState('SD')
+  const [inCategory, setInCategory] = useState('')
   const [inTitle, setInTitle] = useState('')
   const [inTeacher, setInTeacher] = useState('')
   const [inImage, setInImage] = useState('')
   const [show, setShow] = useState(false)
-  const [toastMessage, setToastMessage] = useState('')
-  const [toastTitle, setToastTitle] = useState('')
-  const [toastStatus, setToastStatus] = useState('')
-  const [dataInputCek, setDataInputCek] = useState(null);
+
+  const { id } = useParams()
+
+  useEffect(() => {
+    axios.get(`http://localhost:3030/lulus/${id}`)
+      .then((res) => {
+        const data = res.data
+        setInCategory(data.category)
+        setInTitle(data.title)
+        setInTeacher(data.teacher)
+        setInImage(data.image)
+      })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleTitle = (title) => {
     setInTitle(title)
@@ -30,40 +40,8 @@ const AddCourse = () => {
   const handleCategory = (event) => {
     setInCategory(event.target.value)
   }
-
-  const checkingInput = () => {
-    let statusChecking = true;
-    let array = []
-    setDataInputCek(null)
-    setToastStatus('warning')
-    setToastTitle('Data belum lengkap')
-    if (inImage === '') {
-      array.push('Image')
-      statusChecking = false
-    }
-    if (inTitle === '') {
-      array.push('Course Name')
-      statusChecking = false
-    }
-    if (inTeacher === '') {
-      array.push('Teacher')
-      statusChecking = false
-    }
-    setShow(true)
-
-    if (!statusChecking) {
-      setDataInputCek(array)
-      console.log(false);
-      return false
-    } else {
-      console.log(true);
-      setToastStatus('success')
-      setToastTitle('Add Data')
-      setToastMessage('Data berhasil ditambahkan')
-      return true;
-    }
-  }
-  const addData = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
     const dataInput = {
       category: inCategory,
       title: inTitle,
@@ -72,25 +50,21 @@ const AddCourse = () => {
     }
 
     axios({
-      method: 'post',
-      url: 'http://localhost:3030/course',
+      method: 'patch',
+      url: `http://localhost:3030/lulus/${id}`,
       data: dataInput
     })
       .then((res) => {
         setShow(true)
-        navigate('/courses')
+        setTimeout(() => {
+          navigate('/kelulusan')
+        }, 3000);
       })
-  }
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    if (checkingInput()) {
-      addData()
-    }
   }
   return (
     <div className="mt-5 pt-5 container">
-      <h1>Add Data</h1>
-      <Button as={Link} to='/courses'>Back</Button>
+      <Button as={Link} to="/courses">Back</Button>
+      <h1>Edit Data</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
           <Form.Label sm={2}>
@@ -146,38 +120,29 @@ const AddCourse = () => {
         <Form.Group className="mb-3">
           <Col sm={12}>
             <div className="d-grid">
-              <Button type="submit">Add Course</Button>
+              <Button type="submit">Edit Course</Button>
             </div>
           </Col>
         </Form.Group>
       </Form>
-        <ToastContainer position="top-end">
-        {
-          dataInputCek !== null && dataInputCek.map(data=>{
-            return(
-              <ToastNotification
-                message={`${data} masih kosong`}
-                show={show}
-                title={toastTitle}
-                status={toastStatus}
-                setShow={setShow}
-              />
-            )
-          })
-        }
-        {
-          dataInputCek === null &&
-          <ToastNotification
-                message={toastMessage}
-                show={show}
-                title={toastTitle}
-                status={toastStatus}
-                setShow={setShow}
-              />
-        }
-        </ToastContainer>
+
+      <ToastContainer position="top-end">
+        <Toast bg="success" className="m-2" onClose={() => setShow(false)} show={show} delay={3000} autohide>
+          <Toast.Header>
+            <img
+              src={inImage}
+              className="rounded me-2"
+              alt=""
+              width={50}
+            />
+            <strong className="me-auto">Success</strong>
+            <small>{inCategory}</small>
+          </Toast.Header>
+          <Toast.Body>{`${inTitle}-${inTeacher} has been Created`}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </div>
   )
 }
 
-export default AddCourse
+export default EditLulus
