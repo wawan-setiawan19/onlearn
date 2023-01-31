@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link'
+// import { HashLink } from 'react-router-hash-link'
 import '../index.scss'
-import { Button, Container, Nav, Navbar } from 'react-bootstrap'
+// import { Button, Container, Nav, Navbar } from 'react-bootstrap'
+import { Container, Navbar } from 'react-bootstrap'
 
 const Navigasi = () => {
     return (
