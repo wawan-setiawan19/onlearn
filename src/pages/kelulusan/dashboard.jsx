@@ -18,7 +18,7 @@ const DashboardLulus = () => {
         setIdReceive(id)
     }
     const loadData = () => {
-        axios.get('http://localhost:3030/lulus')
+        axios.get('http://192.168.100.49:3030/lulus')
             .then((res) => {
                 setKelulusan(res.data)
                 setIsLoading(false)
