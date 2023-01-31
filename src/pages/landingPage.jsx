@@ -1,11 +1,11 @@
 import Banner from "../components/banner"
-import Course from "../components/course"
+// import Course from "../components/course"
 
 const LandingPage = () => {
     return (
         <div>
             <Banner/>
-            <Course/>
+            {/* <Course/> */}
         </div>
     )
 }

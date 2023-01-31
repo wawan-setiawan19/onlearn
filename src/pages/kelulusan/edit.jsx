@@ -1,17 +1,18 @@
 import axios from "axios"
 import { useEffect } from "react"
 import { useState } from "react"
-import { Button, Col, Form, Image, Row, Toast, ToastContainer } from "react-bootstrap"
+import { Button, Col, Form, Row, Toast, ToastContainer } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router"
 import { Link } from "react-router-dom"
 
 
 const EditLulus = () => {
   const navigate = useNavigate()
-  const [inCategory, setInCategory] = useState('')
-  const [inTitle, setInTitle] = useState('')
-  const [inTeacher, setInTeacher] = useState('')
-  const [inImage, setInImage] = useState('')
+  const [inPenempatan, setInPenempatan] = useState('SMPIQu Pusat')
+  const [inUsername, setInUsername] = useState('')
+  const [inPassword, setInPassword] = useState('')
+  const [inNama, setInNama] = useState('')
+  const [inAsal, setInAsal] = useState('')
   const [show, setShow] = useState(false)
 
   const { id } = useParams()
@@ -20,33 +21,38 @@ const EditLulus = () => {
     axios.get(`http://localhost:3030/lulus/${id}`)
       .then((res) => {
         const data = res.data
-        setInCategory(data.category)
-        setInTitle(data.title)
-        setInTeacher(data.teacher)
-        setInImage(data.image)
+        setInPenempatan(data.penempatan)
+        setInUsername(data.username)
+        setInPassword(data.password)
+        setInNama(data.nama)
+        setInAsal(data.asal)
       })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleTitle = (title) => {
-    setInTitle(title)
+  const handleUsername = (Username) => {
+    setInUsername(Username)
   }
-  const handleTeacher = (teacher) => {
-    setInTeacher(teacher)
+  const handlePassword = (Password) => {
+    setInPassword(Password)
   }
-  const handleImage = (image) => {
-    setInImage(image)
+  const handleNama = (Nama) => {
+    setInNama(Nama)
   }
-  const handleCategory = (event) => {
-    setInCategory(event.target.value)
+  const handleAsal = (Asal) => {
+    setInAsal(Asal)
+  }
+  const handlePenempatan = (event) => {
+    setInPenempatan(event.target.value)
   }
   const handleSubmit = (event) => {
     event.preventDefault()
     const dataInput = {
-      category: inCategory,
-      title: inTitle,
-      teacher: inTeacher,
-      image: inImage
+      penempatan: inPenempatan,
+      username: inUsername,
+      password: inPassword,
+      nama: inNama,
+      asal: inAsal,
     }
 
     axios({
@@ -68,59 +74,65 @@ const EditLulus = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalEmail">
           <Form.Label sm={2}>
-            Category
+            Penempatan
           </Form.Label>
           <Col sm={12}>
-            <Form.Select aria-label="Default select example" value={inCategory} onChange={handleCategory}>
-              <option disabled>Choose the Category</option>
-              <option value="SD">SD</option>
-              <option value="SMP">SMP</option>
-              <option value="SMA">SMA</option>
+            <Form.Select aria-label="Default select example" value={inPenempatan} onChange={handlePenempatan}>
+              <option disabled>Pilih Penerimaan SMP</option>
+              <option value="SMPIQu Pusat">SMPIQu Pusat</option>
+              <option value="SMPIQu Kuningan">SMPIQu Kuningan</option>
+              <option value="SMPIQu Depok-Jamblang">SMPIQu Depok-Jamblang</option>
+              <option value="SMPIQu Buyut">SMPIQu Buyut</option>
+              <option value="SMPIQu Bogor">SMPIQu Bogor</option>
+              <option value="SMPIQu Cianjur">SMPIQu Cianjur</option>
+              <option value="SMPIQu Blitar">SMPIQu Blitar</option>
+              <option value="SMPIQu Tulungagung">SMPIQu Tulungagung</option>
+              <option value="SMPIQu Pekanbaru">SMPIQu Pekanbaru</option>
+              <option value="SMPIQu Batam">SMPIQu Batam</option>
             </Form.Select>
           </Col>
         </Form.Group>
 
         <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
           <Form.Label sm={2}>
-            Material Topic
+            Nama Lengkap
           </Form.Label>
           <Col sm={12}>
-            <Form.Control type="text" placeholder="Course Name" value={inTitle} onChange={(e) => handleTitle(e.target.value)} />
+            <Form.Control type="text" placeholder="Nama Lengkap" value={inNama} onChange={(e) => handleNama(e.target.value)} />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
+          <Form.Label sm={2}>
+            Asal Sekolah
+          </Form.Label>
+          <Col sm={12}>
+            <Form.Control type="text" placeholder="Asal Sekolah" value={inAsal} onChange={(e) => handleAsal(e.target.value)} />
+          </Col>
+        </Form.Group>
+
+        <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
+          <Form.Label sm={2}>
+            Username
+          </Form.Label>
+          <Col sm={12}>
+            <Form.Control type="text" placeholder="Username" value={inUsername} onChange={(e) => handleUsername(e.target.value)} />
           </Col>
         </Form.Group>
 
         <Form.Group as={Row} className="mb-3">
           <Form.Label sm={2}>
-            Teacher
+            Password
           </Form.Label>
           <Col sm={12}>
-            <Form.Control type="text" placeholder="Teacher Name" value={inTeacher} onChange={(e) => handleTeacher(e.target.value)} />
-          </Col>
-        </Form.Group>
-
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label sm={2}>
-            Image Display Link
-          </Form.Label>
-          <Col sm={12}>
-            <Form.Control type="text" placeholder="Link Image" value={inImage} onChange={(e) => handleImage(e.target.value)} />
-          </Col>
-        </Form.Group>
-
-        <Form.Group as={Row} className="mb-3">
-          <Form.Label sm={2}>
-            Image Preview
-          </Form.Label>
-          <Col sm={12}>
-            {inImage !== '' && <Image src={inImage} alt='preview' width={200} thumbnail rounded />}
-            {inImage === '' && <Image src={inImage} alt='No-Image' width={200} thumbnail rounded />}
+            <Form.Control type="text" placeholder="Password" value={inPassword} onChange={(e) => handlePassword(e.target.value)} />
           </Col>
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Col sm={12}>
             <div className="d-grid">
-              <Button type="submit">Edit Course</Button>
+              <Button type="submit">Ubah Data Santri</Button>
             </div>
           </Col>
         </Form.Group>
@@ -129,16 +141,10 @@ const EditLulus = () => {
       <ToastContainer position="top-end">
         <Toast bg="success" className="m-2" onClose={() => setShow(false)} show={show} delay={3000} autohide>
           <Toast.Header>
-            <img
-              src={inImage}
-              className="rounded me-2"
-              alt=""
-              width={50}
-            />
             <strong className="me-auto">Success</strong>
-            <small>{inCategory}</small>
+            <small>{inNama}</small>
           </Toast.Header>
-          <Toast.Body>{`${inTitle}-${inTeacher} has been Created`}</Toast.Body>
+          <Toast.Body>{`${inNama}-${inAsal} berhasil diubah`}</Toast.Body>
         </Toast>
       </ToastContainer>
     </div>

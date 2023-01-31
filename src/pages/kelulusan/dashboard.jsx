@@ -1,15 +1,15 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react"
-import { Button, Col, Image, Modal, Row, Table } from "react-bootstrap"
+import { Button, Col, Modal, Row, Table } from "react-bootstrap"
 import { Link } from "react-router-dom";
-import DeleteCourse from "./delete";
+import DeleteLulus from "./delete";
 
 const DashboardLulus = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [show, setShow] = useState(false)
     const [idReceive, setIdReceive] = useState('')
-    const [courses, setCourses] = useState();
+    const [kelulusan, setKelulusan] = useState();
 
     const handleClose = () => setShow(false)
     const handleShow = (id) => {
@@ -20,7 +20,7 @@ const DashboardLulus = () => {
     const loadData = () => {
         axios.get('http://localhost:3030/lulus')
             .then((res) => {
-                setCourses(res.data)
+                setKelulusan(res.data)
                 setIsLoading(false)
             })
     }
@@ -42,10 +42,11 @@ const DashboardLulus = () => {
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Category</th>
-                                <th>Material Topic</th>
-                                <th>Teacher</th>
-                                <th>Thumbnail</th>
+                                <th>Penempatan</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Nama Lengkap</th>
+                                <th>Asal Sekolah</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -55,18 +56,19 @@ const DashboardLulus = () => {
                                     <td colSpan={6}>Loading.....</td>
                                 </tr>
                             )}
-                            {!isLoading && courses.map((course, index) => {
+                            {!isLoading && kelulusan.map((lulus, index) => {
                                 return (
-                                    <tr key={course._id}>
+                                    <tr key={lulus._id}>
                                         <td>{index + 1}</td>
-                                        <td>{course.category}</td>
-                                        <td>{course.title}</td>
-                                        <td>{course.teacher}</td>
-                                        <td><Image src={course.image} width={200} thumbnail rounded /></td>
+                                        <td>{lulus.penempatan}</td>
+                                        <td>{lulus.username}</td>
+                                        <td>{lulus.password}</td>
+                                        <td>{lulus.nama}</td>
+                                        <td>{lulus.asal}</td>
                                         <td>
                                             <div className="d-grid">
-                                                <Button variant="outline-primary" as={Link} className="d-block mt-2" to={`./edit/${course._id}`}>Edit</Button>
-                                                <Button variant="outline-danger" className="d-block mt-2" onClick={() => handleShow(course._id)}>Delete</Button>
+                                                <Button variant="outline-primary" as={Link} className="d-block mt-2" to={`./edit/${lulus._id}`}>Edit</Button>
+                                                <Button variant="outline-danger" className="d-block mt-2" onClick={() => handleShow(lulus._id)}>Delete</Button>
                                             </div>
                                         </td>
                                     </tr>
@@ -77,7 +79,7 @@ const DashboardLulus = () => {
                 </Row>
             </div>
             <Modal show={show} onHide={handleClose}>
-                <DeleteCourse handleClose={handleClose} id={idReceive} loadData={loadData} />
+                <DeleteLulus handleClose={handleClose} id={idReceive} loadData={loadData} />
             </Modal>
         </div>
     )
