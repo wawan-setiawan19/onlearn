@@ -18,7 +18,7 @@ const EditLulus = () => {
   const { id } = useParams()
 
   useEffect(() => {
-    axios.get(`http://192.168.100.111:3030/lulus/${id}`)
+    axios.get(`http://localhost:3030/lulus/${id}`)
       .then((res) => {
         const data = res.data
         setInPenempatan(data.penempatan)
@@ -57,7 +57,7 @@ const EditLulus = () => {
 
     axios({
       method: 'patch',
-      url: `http://192.168.100.111:3030/lulus/${id}`,
+      url: `http://localhost:3030/lulus/${id}`,
       data: dataInput
     })
       .then((res) => {
