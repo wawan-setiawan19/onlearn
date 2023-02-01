@@ -594,7 +594,7 @@ const data = [{
   },
   "penempatan": "SMPIQu Pusat",
   "username": "OFF2324003",
-  "password": "12032011",
+  "password": "13032011",
   "nama": "Ashfa Jelita Husen",
   "asal": "Jakarta",
   "__v": 0
