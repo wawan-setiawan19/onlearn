@@ -2783,8 +2783,8 @@ const data = [{
     "$oid": "63d8f5ccc4e7d928876864b9"
   },
   "penempatan": "SMPIQu Kuningan",
-  "username": "ON2324240",
-  "password": "30032011",
+  "username": "ON2324060",
+  "password": "19082010",
   "nama": "Rama Khairul Azzam",
   "asal": "Karawang",
   "__v": 0
