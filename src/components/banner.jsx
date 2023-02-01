@@ -6,6 +6,9 @@ import banner from "./banner.png"
 const Banner = () => {
     const [inJalur, setInJalur] = useState('ON')
     const [inDigit, setInDigit] = useState('')
+    const [inTanggal, setInTanggal] = useState('01')
+    const [inBulan, setInBulan] = useState('01')
+    const [inTahun, setInTahun] = useState('2011')
     const tahunAjaran = '2324'
     const [status, setStatus] = useState(false)
     const [statusError, setStatusError] = useState(false)
@@ -23,7 +26,9 @@ const Banner = () => {
     const textGradient = {
         background: 'linear-gradient(90deg, rgba(247,212,106,1) 0%, rgba(211,74,148,1) 100%)',
         backgroundClip: 'text',
-        fillColor: 'transparent'
+        fillColor: 'transparent',
+        padding: '10px 5px',
+        borderRadius: '5px'
     }
     const handleJalur = (event) => {
         setInJalur(event.target.value)
@@ -31,20 +36,37 @@ const Banner = () => {
     const handleDigit = (digit) => {
         setInDigit(digit)
       }
+    const handleTanggal = (Tanggal) => {
+        setInTanggal(Tanggal)
+      }
+    const handleBulan = (Bulan) => {
+        setInBulan(Bulan)
+      }
+    const handleTahun = (Tahun) => {
+        setInTahun(Tahun)
+      }
     const handleSubmit = (event) =>{
         event.preventDefault()
         setStatus(false)
         setStatusError(false)
         const nomorDaftar = inJalur+tahunAjaran+inDigit
-        console.log(nomorDaftar);
+        const tanggalLahir = inTanggal+inBulan+inTahun
         const hasilKelulusan = data.find(element=>{
             return element.username.toUpperCase() === nomorDaftar
         })
+
+        console.log(status)
+        console.log(statusError)
         
         if(hasilKelulusan !== undefined) {
-            console.log('ada')
-            setHasil(hasilKelulusan)
-            setStatus(true);
+            console.log(hasilKelulusan.password)
+            if(hasilKelulusan.password === tanggalLahir){
+                setHasil(hasilKelulusan)
+                setStatus(true);
+            }else{
+                setHasil('Mohon maaf data sudah kami temukan, akan tetapi tanggal lahir tidak sesuai')
+                setStatusError(true)
+            }
         }
         if(hasilKelulusan === undefined) {
             setHasil('Mohon Maaf Nomor Peserta Tidak Valid')
@@ -60,7 +82,7 @@ const Banner = () => {
                     </Col>
                     <Col lg={4} className=''>
                         <div className="fw-bolder" style={textGradient}>SMP Islam Qurani Al Bahjah</div>
-                        <div className="fs-2 fw-bold lh-base">Selamat Datang di Website Informasi Kelulusan</div>
+                        <div className="fs-4 fw-bold lh-base">Selamat Datang di Website Informasi Kelulusan</div>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group as={Row} className='mb-3'>
                                 <Form.Label sm={2}>
@@ -91,17 +113,40 @@ const Banner = () => {
                                     <Form.Control type="number" pattern="[0-9]*" placeholder="Tiga Digit Terakhir" value={inDigit} onChange={(e) => handleDigit(e.target.value)} required/>
                                 </Col>
                             </Form.Group>
+                            <Form.Group as={Row} className="mb-3" controlId="formHorizontalPassword">
+                                <Form.Label sm={12}>
+                                        Tanggal Lahir
+                                </Form.Label>
+                                <Col sm={4}>
+                                    <Form.Label sm={2}>
+                                        Tanggal
+                                    </Form.Label>
+                                    <Form.Control type="number" pattern="[0-9]*" placeholder="Tanggal lahir" value={inTanggal} onChange={(e) => handleTanggal(e.target.value)} required/>
+                                </Col>
+                                <Col sm={4}>
+                                    <Form.Label sm={2}>
+                                        Bulan
+                                    </Form.Label>
+                                    <Form.Control type="number" pattern="[0-9]*" placeholder="Bulan lahir" value={inBulan} onChange={(e) => handleBulan(e.target.value)} required/>
+                                </Col>
+                                <Col sm={4}>
+                                    <Form.Label sm={2}>
+                                        Tahun
+                                    </Form.Label>
+                                    <Form.Control type="number" pattern="[0-9]*" placeholder="Tahun lahir" value={inTahun} onChange={(e) => handleTahun(e.target.value)} required/>
+                                </Col>
+                            </Form.Group>
                             <Button type='submit' style={buttonStyle} className="mt-4 d-block">Periksa</Button>
                         </Form>
                     </Col>
                 </Row>
                 {status &&(
                         <Row>
-                            <div style={pengungumanStyle} class="px-5 py-3 my-5 text-center">
-                                <h3 class="">Ahlan wa Sahlan wa Marhaba,</h3>
-                                <h1 class="display-6 fw-bold">{hasil.nama} - {hasil.asal}</h1>
-                                <div class="col-lg-6 mx-auto">
-                                <p class="lead mb-4">Bersamaan dengan pengumuman ini, kami akan informasikan bahwa Ananda diterima di <p class="display-6 fw-bold">{hasil.penempatan}.</p>Langkah selanjutnya adalah silakan gabung grup komunikasi di sekolah penempatan.</p>
+                            <div style={pengungumanStyle} className="px-5 py-3 my-5 text-center">
+                                <h3 className="">Ahlan wa Sahlan wa Marhaba,</h3>
+                                <h1 className="display-6 fw-bold">{hasil.nama} - {hasil.asal}</h1>
+                                <div className="col-lg-6 mx-auto">
+                                <p className="lead mb-4">Bersamaan dengan pengumuman ini, kami akan informasikan bahwa Ananda diterima di <p className="display-6 fw-bold">{hasil.penempatan}.</p>Langkah selanjutnya adalah silakan gabung grup komunikasi di sekolah penempatan.</p>
                                 <div>DAFTAR ULANG : </div>
                                 </div>
                             </div>
@@ -110,8 +155,8 @@ const Banner = () => {
                 }
                 {statusError &&(
                         <Row>
-                            <div style={pengungumanStyle} class="px-5 py-3 my-5 text-center">
-                                <h1 class="display-6 fw-bold">{hasil}</h1>
+                            <div style={pengungumanStyle} className="px-5 py-3 my-5 text-center">
+                                <h1 className="display-6 fw-bold">{hasil}</h1>
                             </div>
                         </Row>
                     )

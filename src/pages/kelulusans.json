@@ -1,4 +1,4 @@
-const data = [{
+[{
   "_id": {
     "$oid": "63d8e570c4e7d9288768609c"
   },
@@ -13,7 +13,7 @@ const data = [{
     "$oid": "63d8e5abc4e7d9288768609f"
   },
   "penempatan": "SMPIQu Pusat",
-  "username": "OFF2324009",
+  "username": "OFF23240009",
   "password": "30032011",
   "nama": "RASYAD AZLA FAIZ",
   "asal": "BANDUNG",
@@ -24,7 +24,7 @@ const data = [{
   },
   "penempatan": "SMPIQu Pusat",
   "username": "OFF2324006",
-  "password": "25112011",
+  "password": "25112022",
   "nama": "Moreno Malik Ghaniyy Witanto",
   "asal": "Jakarta",
   "__v": 0
@@ -3039,5 +3039,3 @@ const data = [{
   "asal": "Bandung",
   "__v": 0
 }]
-
-export default data
