@@ -646,7 +646,7 @@ const data = [{
   "username": "OFF2324048",
   "password": "25032011",
   "nama": "Asma Sabrina Tadzkiatunnafsh",
-  "asal": "Majalengka",
+  "asal": "Majalengka ",
   "__v": 0
 },{
   "_id": {
