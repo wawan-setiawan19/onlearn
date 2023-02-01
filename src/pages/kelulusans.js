@@ -2653,7 +2653,7 @@ const data = [{
     "$oid": "63d8f542c4e7d92887686492"
   },
   "penempatan": "SMPIQu Pusat",
-  "username": "On2324242",
+  "username": "SD2324091",
   "password": "29072010",
   "nama": "Muhamad Nur Faiz",
   "asal": "Bogor",
