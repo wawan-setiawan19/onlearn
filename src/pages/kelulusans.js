@@ -1782,7 +1782,7 @@ const data = [{
   "_id": {
     "$oid": "63d8f118c4e7d92887686347"
   },
-  "penempatan": "SMPIQu Pusat",
+  "penempatan": "SMPIQu Buyut",
   "username": "OFF2324024",
   "password": "04032011",
   "nama": "Cindy Ziftiani A-lmaira",
