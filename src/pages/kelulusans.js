@@ -2313,7 +2313,7 @@ const data = [{
     "$oid": "63d8f3e5c4e7d9288768640c"
   },
   "penempatan": "SMPIQu Depok-Jamblang",
-  "username": "ON2324-067",
+  "username": "ON2324067",
   "password": "30062010",
   "nama": "Farras Yusuf Amarullah",
   "asal": "Sukabumi",
