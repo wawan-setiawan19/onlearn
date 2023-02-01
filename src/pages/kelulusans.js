@@ -534,7 +534,7 @@ const data = [{
   },
   "penempatan": "SMPIQu Pusat",
   "username": "OFF2324064",
-  "password": "11112010",
+  "password": "26032011",
   "nama": "Muhammad Yusuf Al 'Azhari",
   "asal": "Bekasi",
   "__v": 0
