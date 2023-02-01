@@ -2773,8 +2773,8 @@ const data = [{
     "$oid": "63d8f5c7c4e7d928876864b6"
   },
   "penempatan": "SMPIQu Blitar",
-  "username": "On2324165",
-  "password": "2612011",
+  "username": "On2324092",
+  "password": "26012011",
   "nama": "Muhammad Hanif Abdullah",
   "asal": "Purwakarta",
   "__v": 0
